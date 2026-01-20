@@ -25,6 +25,4 @@ RUN chown -R nonroot:nonroot /app
 
 ENTRYPOINT []
 
-USER nonroot
-
 CMD ["uv", "run", "uvicorn", "server:app"]
