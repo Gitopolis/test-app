@@ -16,8 +16,9 @@ spec:
     spec:
       containers:
         - name: test-app
-          image: ghcr.io/gitopolis/test-app:main
+          image: ghcr.io/gitopolis/test-app:sha-8f87363
           imagePullPolicy: IfNotPresent
+          command: ["uv", "run", "uvicorn", "server:app", "--host=0.0.0.0", "--port=8000"]
           env:
             - name: SURREALDB_HOST
               value: dev-surrealdb.myapp.svc.cluster.local
@@ -28,4 +29,5 @@ spec:
             - name: SURREALDB_PORT
               value: "8000"
           ports:
-            - containerPort: 80
+            - containerPort: 8000
+              name: http
