@@ -1,0 +1,4 @@
+surrealdb:
+  path: memory
+  initial_user: root
+  initial_pass: root

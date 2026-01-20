@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package user.v1;
+
+message User {
+  string firstname = 1;
+  string middlename = 2;
+  string lastname = 3;
+  string email = 4;
+  string phone = 5;
+  string dob = 6;
+}
+
+
+service UserService {
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Read(ReadRequest) returns (ReadResponse) {}
+  rpc Update(UpdateRequest) returns (UpdateResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+}
+
+message CreateRequest {
+  User user = 1;
+}
+
+message CreateResponse {
+  string id = 1;
+  bool success = 2;
+}
+
+message ReadRequest {
+  string id = 1;
+}
+
+message ReadResponse {
+  User user = 1;
+  bool success = 2;
+}
+
+message UpdateRequest {
+  string id = 1;
+  User user = 2;
+}
+
+message UpdateResponse {
+  User user = 1;
+  bool success = 2;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
+}
