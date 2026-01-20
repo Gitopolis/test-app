@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app
+  labels:
+    app: test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+        - name: test-app
+          image: ghcr.io/gitopolis/test-app:main
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SURREALDB_HOST
+              value: dev-surrealdb.myapp.svc.cluster.local
+            - name: SURREALDB_USER
+              value: root
+            - name: SURREALDB_PASS
+              value: root
+            - name: SURREALDB_PORT
+              value: "8000"
+          ports:
+            - containerPort: 80
